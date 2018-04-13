@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-enquiv='Content-Type' content='text/html;
+        charset=utf-8'>
+        <title>习题</title>
+        <script>
+            //计算某一年是否为闰年
+            'use strict';
+            var year = parseFloat(prompt('请输入年份：'));
+            if (year % 4 === 0){
+                if (year % 400 === 0){
+                    alert(`${year}年是闰年`);
+                }if (year % 100 === 0 && year % 400 !== 0){
+                    alert(`${year}年不是闰年`);
+                };
+            }else{
+                alert(`${year}年不是闰年`);
+            };   
+        </script>
+        <script>
+            //输入一行字符，将每个单词首字母大写，其他字母小写，如输入ONE two,输出One Two
+            'use strict';
+            var a = prompt('请输入英文单词:');
+            function change(a){
+                return a.split(' ').map(function(x){return x[0].toUpperCase() + x.substring(1).toLowerCase();}).join(' ');
+            };
+            change(a);
+        </script>
+        <script>
+            //输出一个数字所有的约数和小于它的质数
+            'use strict';
+            var num = prompt('请输入一个正整数：');
+            function divisor(num){
+                function d(){
+                    var i;
+                        arr_divisor = [1];
+                    for (i=2;i<num;i++){
+                        if (num % i === 0){
+                            num = num / i;
+                            arr_divisor.push(i);
+                            if (num < i){
+                                break;
+                            };
+                        };
+                    };
+                };
+                arr_divisor.push(num);   
+                console.log(`${num}的约数为：${arr_divisor.join('、')}。`);
+            };
+            function primes(num){
+                if (num>3){
+                    var x;
+                        arr_prime = [];
+                    for (x=2;x<num;x++){
+                        arr_prime.push(x);
+                    };
+                    function get_primes(arr_prime){
+                        return arr_prime.filter(function(a){//同样的思路这里就报错啊
+                            if (a>2){
+                                var i;
+                                for (i=2;i<a;i++){
+                                    if (a%i === 0){
+                                        return false;
+                                        break;
+                                    };
+                                };
+                                return true;
+                            }else{
+                                return a===2;
+                            };
+                        });
+                    };
+                    console.log(`小于${num}的质数为${arr_prime.join('、')}。`);
+                }if (num=3){ //num>2这个条件应该也是可以的啊，为啥不行？
+                    console.log(`小于${num}的质数为2。`);
+                }else{
+                    console.log(`没有小于${num}的质数。`);
+                };
+            };
+        </script>
+        <script>
+            //输出九九乘法口诀
+            'use strict';
+            function mul(){
+                var i=1;
+                    n=1;
+                while (n<10){
+                    for (i=1;i<=n;i++){
+                        result = i * n;
+                        console.log(`${i}*${n}=${result}`);//也可以(i+'*'+n+'='+i*n)
+                    };
+                    n += 1;
+                };
+            };
+            mul();
+        </script>
+        <script>
+            //输入一行字符，分别统计出其中英文字母、空格、数字和其他字符的个数
+            'use strict';
+            var str = prompt('请输入任意内容：');
+            function getlength(str){
+                function getletterlength(){
+                    if (/[a-z]/i.test(str)){
+                        letterlen = str.match(/[a-z]/ig).length;
+                    }else{
+                        letterlen = 0;
+                    };
+                    console.log(`英文字母数为${letterlen}个。`);
+                };
+                function getnumberlength(){
+                    if (/[0-9]/.test(str)){
+                        numlen = str.match(/[0-9]/g).length;
+                    }else{
+                        numlen = 0;
+                    };
+                    console.log(`数字个数为${numlen}个。`);
+                };
+                function getspacelength(){
+                    if (new RegExp(' ', 'g').test(str)){
+                        //计算出空格数不会写！
+                    }else{
+                        spacelen = 0;
+                    }
+                }
+                function elselength(){
+                    elselen = str.length - letterlen - numlen - spacelen;
+                    console.log(`其他字符数为${elselen}个。`);
+                }
+            };
+            getlength();
+        </script>
+    </head>
+</html>
