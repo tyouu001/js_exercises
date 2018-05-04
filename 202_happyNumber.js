@@ -10,15 +10,15 @@
 */
 'use strict';
 var isHappy = function(n) {
-    var m = n.toString();
-    while (m.length > 1){
+    var m = n.toString();//转为字符串遍历
+    while (m.length > 1){//非1位数时遍历
         var sum = 0;
         for (let i=0;i<m.length;i++){
-            sum += m[i] * m[i];
+            sum += m[i] * m[i];//计算平方和
         }
-        m = sum.toString();
+        m = sum.toString();//平方和替换为新数字
     };
-    if (m == 1 || m == 7)
+    if (m == 1 || m == 7)//1位数中1和7为快乐数
         return true;
     else
         return false;
